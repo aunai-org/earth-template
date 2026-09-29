@@ -83,8 +83,6 @@ data/sample.ts          the demo data
 
 ## License
 
-Copyright (C) 2026 earth-template.
-
-Earth Template is released under the [MIT License](LICENSE). You can use, change, and share it, including in closed-source and commercial projects, as long as you keep the copyright and license notice. It comes with no warranty: the authors aren't liable for how it's used.
+Released under the [MIT License](LICENSE).
 
 It bundles three.js (MIT), d3-geo, d3-array, topojson-client and world-atlas (ISC), the IBM Plex Mono font (SIL Open Font License), and Natural Earth map data (public domain). Their notices are in [public/third-party-notices.txt](public/third-party-notices.txt), which ships with the site.
