@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "A dark, interactive Earth with a space backdrop, sound, and cards. Bring your own data.",
-  "license": "AGPL-3.0-only",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",

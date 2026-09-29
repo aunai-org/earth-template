@@ -66,7 +66,7 @@ export const config = {
       { label: "Map", html: "Natural Earth country outlines, via world-atlas." },
       {
         label: "License",
-        html: `© 2026 earth-template. Code is <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a>: free to use and change; modified versions you run for others must share their source. No warranty. <a href="/third-party-notices.txt" target="_blank" rel="noopener noreferrer">Third-party notices</a>.`,
+        html: `© 2026 earth-template. Code is <a href="https://opensource.org/license/mit" target="_blank" rel="noopener noreferrer">MIT</a>: free to use and change, with the license notice kept. No warranty. <a href="/third-party-notices.txt" target="_blank" rel="noopener noreferrer">Third-party notices</a>.`,
       },
     ],
     disclaimer: "Everything in the sample data is made up, and its places are real cities used only as map positions.",

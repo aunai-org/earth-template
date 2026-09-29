@@ -1,6 +1,6 @@
 Third-party notices for earth-template
 
-earth-template (AGPL-3.0-only) bundles or redistributes the works below.
+earth-template (MIT) bundles or redistributes the works below.
 Each is used under its own licence, reproduced here as that licence requires.
 If you replace the sample data with data from a source that has its own licence, add its notice here too.
 
