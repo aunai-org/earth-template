@@ -91,9 +91,9 @@ export function sampleDataset(now = new Date()): Dataset {
           ["Festival cut", rand() > 0.5 ? "Yes" : "No"],
         ],
       });
-      // Each release screened at three to seven festivals.
+      // Each release "screened at" two to four festivals. Picked at random: the arcs are a demo, not real screenings.
       const chosen = new Set<string>();
-      const target = 3 + Math.floor(rand() * 5);
+      const target = 2 + Math.floor(rand() * 3);
       while (chosen.size < target) chosen.add(pick(nodes).id);
       for (const node of chosen) links.push({ item: id, node });
     }

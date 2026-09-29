@@ -29,6 +29,19 @@ export const config = {
   } satisfies Record<"hub" | "item" | "node", KindName>,
 
   /**
+   * What an arc means, in words. Selecting an item draws arcs from its hub to each node it links to.
+   * item: the item's side ("Release screened at 5 festivals"). node: the node's side ("3 releases screened here").
+   * The legend at the bottom reads "release screened at festival" from these, so a visitor never has to guess.
+   */
+  link: { item: "screened at", node: "screened here" },
+
+  /**
+   * Set to true while the app shows sample data: a "Demo data" badge appears in the top bar and the
+   * "Data from …" timestamp is hidden, so nobody mistakes the sample for live data. Remove it (or set false) with real data.
+   */
+  demo: true,
+
+  /**
    * Dates on items drive the "recent" window, the Latest list, and the pulse on fresh hubs.
    * Set `enabled: false` if your items have no dates; those three parts are hidden.
    */
@@ -49,6 +62,7 @@ export const config = {
       "A dark, interactive Earth with a space backdrop, sound, and cards. The data shown here is a sample: fictional studios, releases, and festivals.",
     rows: [
       { label: "Data", html: "Sample data generated in <code>data/sample.ts</code>. Replace it with your own." },
+      { label: "Arcs", html: "An arc joins an item's hub to a node it is linked to. In the sample the links are random, so the arcs mean nothing." },
       { label: "Map", html: "Natural Earth country outlines, via world-atlas." },
       {
         label: "License",
@@ -59,11 +73,13 @@ export const config = {
   },
 
   /** The credit in the footer. Leave `href` empty for plain text. */
-  credit: { label: "Data", text: "sample", href: "" },
+  credit: { label: "Data", text: "sample · fictional", href: "" },
 
   /** Status and notice wording. */
   copy: {
     loading: "Loading…",
+    demo: "Demo data",
+    demoTitle: "This is made-up sample data, not real",
     stamp: (time: string) => `Data from ${time}`,
     refreshTitle: "Check for newer data",
     upToDate: "Up to date",

@@ -50,6 +50,18 @@ button { cursor: pointer; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12); }
 .topbar-right { display: flex; align-items: center; gap: 10px; }
 .clock { color: var(--muted); font-size: 11px; }
+/* Shown while config.demo is on, so sample data is never mistaken for real data. */
+.demo-badge {
+  padding: 3px 8px;
+  border: 1px solid rgba(245, 160, 74, 0.5);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.demo-badge[hidden] { display: none; }
 .icon-btn {
   display: grid;
   place-items: center;
@@ -239,6 +251,8 @@ button { cursor: pointer; }
 .hint .key span { display: inline-flex; align-items: center; gap: 5px; }
 .hint .key .mark { width: 10px; height: 10px; }
 .hint .key .node { color: var(--node); }
+.hint .key .arc { color: var(--node); }
+.hint .key .arc .mark { width: 12px; }
 .hint .credit a { pointer-events: auto; color: var(--muted); text-underline-offset: 3px; }
 .hint .credit a:hover { color: var(--ink); }
 
@@ -358,8 +372,11 @@ button { cursor: pointer; }
 }
 /* Phones: the bottom belongs to the panels and the sheet, so the legend sits under the logo. */
 @media (max-width: 600px) {
-  .hint { top: 58px; bottom: auto; left: 16px; transform: none; gap: 12px; }
+  .hint { top: 58px; bottom: auto; left: 16px; transform: none; gap: 4px 12px; flex-wrap: wrap; max-width: calc(100vw - 132px); }
+  .hint .key { flex-wrap: wrap; gap: 4px 10px; }
   .clock { display: none; }
+  /* No room in the top bar on a phone, so the badge sits at the right edge of the legend row. */
+  .demo-badge { position: fixed; top: 56px; right: 16px; z-index: 3; }
   #app[data-card="open"] .hint { display: flex; }
   .about { top: auto; bottom: 0; right: 0; left: 0; width: 100%; max-height: 60vh; border-radius: 12px 12px 0 0; }
 }

@@ -6,13 +6,13 @@
 
 Earth Template is a ready-made interactive Earth for a data set where things sit on a map and connect to each other. It was extracted from Modex, an app that shows the AI model catalog on a globe. The look and feel are done. You supply the data and the wording.
 
-The demo data is made up: film studios, their releases, and the festivals that screened them.
+The demo data is entirely fictional: film studios, their releases, and the festivals that screened them. The places are real cities, used only as map positions, and the links (so the arcs) are random. The app shows a "Demo data" badge until you set `demo: false` in `src/config.ts`.
 
 ## What's included
 
 - **The globe.** Dark country tiles with a soft rim of light. Drag to spin, scroll to zoom. Nearby pins group into numbered badges, and one click fans a badge out.
 - **Space.** A faint Milky Way, stars, distant shooting stars, a few drifting asteroids, and satellites circling the globe.
-- **Cards.** Select something and a card opens with rows taken straight from your data. Selecting an item draws arcs to everything it links to.
+- **Cards.** Select something and a card opens with rows taken straight from your data. Selecting an item draws arcs to everything it links to, and the legend names what an arc means ("release screened at festival"). You set that wording in `config.link`.
 - **Panels.** Filters and search, a Latest list, an About panel, and a legend that is always on screen.
 - **Sound.** Optional synthesized cues (nothing to download), off until the visitor turns them on.
 - **Phones.** The card becomes a bottom sheet, and the side panels fold away.

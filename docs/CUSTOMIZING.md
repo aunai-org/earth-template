@@ -9,6 +9,8 @@ Turning the template into your app is mostly two files: `src/config.ts` for word
 | `id` | Prefix for browser storage (saved data, sound on/off). Change it per app so two apps on one domain don't share it. |
 | `name`, `tagline`, `description` | The wordmark, the line under it, the page title, and the meta description. |
 | `kinds` | What the hub, item, and node are called (`one` and `many`). These words appear on the card, the legend, the filters, and tooltips. |
+| `link` | What an arc means, in words: `item` ("screened at") and `node` ("screened here"). They label the card rows and the arc key in the legend, so visitors know what a line between two pins says. |
+| `demo` | `true` shows a "Demo data" badge and hides the "Data from …" time. Delete it or set `false` once your own data is in. |
 | `dates` | `enabled`, `recentDays`, `latestDays`. Dates on items drive the recent window, the Latest list, and the pulse on fresh hubs. Set `enabled: false` if your items have no dates and those three parts are hidden. |
 | `fanLimit`, `latestLimit` | How many items ring a selected hub, and how many rows the Latest list shows. |
 | `refreshMinutes` | How often an open tab quietly checks for newer data. |
@@ -32,6 +34,7 @@ Text in `about.rows[].html` is inserted as HTML. It is yours, not user data, so 
 }
 ```
 
+- **Arcs.** An arc means "this item is linked to that node". Only draw arcs for a relationship you can name, then put that name in `config.link`. The sample's links are random.
 - **Pins.** A hub or node is pinned only if it has both `lat` and `lng`. Without them it still appears in lists and search, and its card says "No pin".
 - **Facts.** `facts` are the extra rows on a card: `[label, value]` or `[label, value, "https://link"]`. Only `https://` links are made clickable. The values `Yes` and `Open` show green and `No` shows dim.
 - **Ids.** They only need to be unique within their own kind.

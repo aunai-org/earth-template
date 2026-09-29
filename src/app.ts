@@ -62,6 +62,7 @@ function paintChrome() {
   setText("#key-hub", K.hub.one);
   setText("#key-item", K.item.one);
   setText("#key-node", K.node.one);
+  setText("#key-arc", `${low(K.item.one)} ${config.link.item} ${low(K.node.one)}`);
   $("#cat-node").title = `Show every ${low(K.node.one)}, not just the ones tied to your selection`;
 
   setText("#about-title", config.name);
@@ -77,6 +78,10 @@ function paintChrome() {
     wrap.append(dt, dd);
     rows.append(wrap);
   }
+  const demoBadge = $("#demo-badge");
+  demoBadge.hidden = !config.demo;
+  demoBadge.textContent = config.copy.demo;
+  demoBadge.title = config.copy.demoTitle;
   const credit = $("#credit");
   credit.append(`${config.credit.label} `);
   if (config.credit.href) {
@@ -363,7 +368,7 @@ function paintCounts(shownHubs: HubRow[], pinnedNodes: NodeRow[]) {
   setText("#count-item", String(recentOnly ? fresh : items.length));
   setText("#count-node", String(pinnedNodes.filter((row) => spot(row)).length));
   setText("#count-pulse", String(fresh));
-  if (!clockHold) clockEl.textContent = updatedAt ? config.copy.stamp(clock(new Date(updatedAt))) : "";
+  if (!clockHold) clockEl.textContent = stampText();
   if (!globe.ready) statusEl.textContent = config.copy.noWebGL;
   else if (notice) statusEl.textContent = notice;
   else statusEl.textContent = `${hubs.length} ${low(K.hub.many)} · ${items.length} ${low(K.item.many)} · ${nodes.length} ${low(K.node.many)}`;
@@ -428,7 +433,7 @@ function paintCard(hub: HubRow | null, item: ItemRow | null, itemNodes: NodeRow[
     const owners = [...new Set(linked.map((row) => hubById.get(row.hub)?.name).filter(Boolean))];
     kind(K.node.one, node.id);
     setText("#card-name", node.name);
-    setText("#card-when", `${linked.length} ${low(linked.length === 1 ? K.item.one : K.item.many)} linked`);
+    setText("#card-when", `${linked.length} ${low(linked.length === 1 ? K.item.one : K.item.many)} ${config.link.node}`);
     if (item) addFact(body, "For", item.name);
     addFact(body, K.hub.many, owners.join(" · ") || "—");
     addFact(body, "Place", node.place ?? "No pin");
@@ -440,8 +445,9 @@ function paintCard(hub: HubRow | null, item: ItemRow | null, itemNodes: NodeRow[
     setText("#card-name", item.name);
     setText("#card-when", dateLine(item));
     addFact(body, K.hub.one, hub.name);
-    if (mapped.length) addFact(body, K.node.many, summary, () => frameNodes(hub, mapped));
-    else addFact(body, K.node.many, summary);
+    const arcLabel = config.link.item[0].toUpperCase() + config.link.item.slice(1);
+    if (mapped.length) addFact(body, arcLabel, summary, () => frameNodes(hub, mapped));
+    else addFact(body, arcLabel, summary);
     extra(item.facts);
   } else if (hub) {
     const own = hubItems(hub.id);
@@ -541,12 +547,16 @@ function capCard() {
 
 /** While set, the top-bar time shows a short message instead of the data time. */
 let clockHold = 0;
+/** The "Data from …" line. Sample data has no real time to show, so demo mode leaves it blank. */
+function stampText() {
+  return updatedAt && !config.demo ? config.copy.stamp(clock(new Date(updatedAt))) : "";
+}
 function flashClock(message: string) {
   window.clearTimeout(clockHold);
   clockEl.textContent = message;
   clockHold = window.setTimeout(() => {
     clockHold = 0;
-    clockEl.textContent = updatedAt ? config.copy.stamp(clock(new Date(updatedAt))) : "";
+    clockEl.textContent = stampText();
   }, 3500);
 }
 
